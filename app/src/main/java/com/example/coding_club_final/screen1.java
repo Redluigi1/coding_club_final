@@ -12,15 +12,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class screen1 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class screen1 extends AppCompatActivity {
 
 
 
@@ -33,11 +31,7 @@ public class screen1 extends AppCompatActivity implements AdapterView.OnItemSele
         MaterialToolbar toolbar = findViewById(R.id.topAppbar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
-        Spinner spinner = findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinneritems, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,13 +78,4 @@ public class screen1 extends AppCompatActivity implements AdapterView.OnItemSele
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }

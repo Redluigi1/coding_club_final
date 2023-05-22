@@ -1,13 +1,18 @@
 package com.example.coding_club_final;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +21,10 @@ import android.widget.Spinner;
  */
 public class frag1 extends Fragment {
 
-
+Button button;
+int a;
+Spinner spinner2,spinner3;
+String diff,category;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -48,7 +56,7 @@ public class frag1 extends Fragment {
         return fragment;
     }
 
-    @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -57,12 +65,31 @@ public class frag1 extends Fragment {
 
 
         }
+
+
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag1, container, false);
+        View view = inflater.inflate(R.layout.fragment_frag1, container, false);
+        Button button = view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openscreen0();
+
+            }
+        });
+        return view;
+    }
+
+
+    public void openscreen0(){
+        Intent intent = new Intent(frag1.this.getActivity(),quiz.class);
+        startActivity(intent);
+
     }
 }
