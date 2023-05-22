@@ -14,7 +14,8 @@ import android.widget.Toast;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 public class MainActivity extends AppCompatActivity {
-    public static String name_string;
+    public static String name_string = "";
+
     public TextView username;
     private Button button1;
 
@@ -30,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                name_string = username.getText().toString();
+                if (name_string.length() != 0 ){
 
-                if (name_string.length() != 0){
-                    name_string = username.getText().toString();
                     openscreen1();}
                 else {
                     Toast.makeText(MainActivity.this, "Please enter username", Toast.LENGTH_SHORT).show();
