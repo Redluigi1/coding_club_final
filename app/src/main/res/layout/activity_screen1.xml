@@ -36,6 +36,9 @@
     app:headerLayout="@layout/nav_header"
     app:menu="@menu/my_navigation_items"
     android:background="@color/Purple1st"
+    app:itemTextColor="@color/black"
+    app:item
+    app:itemBackground="@drawable/rounded_corner_view"
     android:layout_gravity="start"/>
 
 
