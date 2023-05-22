@@ -12,6 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.appbar.MaterialToolbar
@@ -26,21 +27,24 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
-</RelativeLayout>
-<com.google.android.material.navigation.NavigationView
-    android:id="@+id/navigation_view"
-    android:layout_width="wrap_content"
+<fragment
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:headerLayout="@layout/nav_header"
-    app:menu="@menu/my_navigation_items"
-    android:background="@color/Purple1st"
-    app:itemTextColor="@color/black"
-    app:itemShapeFillColor="#C87BC9"
-    app:shapeAppearance="@drawable/rounded_corner_view"
-
-    android:layout_gravity="start"/>
+    android:id="@+id/frame_layout"
+    android:layout_below="@id/appbarLayout"
+/>
+</RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/my_navigation_items"
+        android:background="@color/Purple1st"
+        app:itemTextColor="@color/black"
+        app:itemShapeFillColor="#C87BC9"
+        app:shapeAppearance="@drawable/rounded_corner_view"
+        android:layout_gravity="start"/>
 
 
 
