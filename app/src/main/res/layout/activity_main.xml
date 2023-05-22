@@ -27,6 +27,7 @@
         android:fontFamily="@font/poppins_medium"
 
         android:text="Welcome Aboard"
+        android:textColor="@color/black"
         android:textSize="30dp" />
 
     <EditText
@@ -40,7 +41,8 @@
         android:hint="Username"
         android:minHeight="48dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/password"
@@ -48,12 +50,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-
+        android:inputType="textPassword"
         android:layout_marginBottom="210dp"
         android:background="@drawable/rounded_corner_view"
         android:hint="Password"
         android:minHeight="48dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:textColor="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="136dp"
+        android:background="@drawable/rounded_corner_view"
+        android:fontFamily="@font/poppins_medium"
+        android:shadowColor="@color/black"
+        android:text="Login"
+        android:textColor="@color/black" />
+
 
 </RelativeLayout>
