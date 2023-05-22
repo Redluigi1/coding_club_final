@@ -7,16 +7,86 @@
     tools:context=".frag1">
 
     <!-- TODO: Update blank fragment layout -->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Take a new Quiz !"
+            android:textColor="@color/black"
+            android:textSize="34sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView3"
+
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corner_view"
+            android:ems="10"
+            android:hint="Enter number of questions"
+
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+           android:layout_below="@id/textView1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Number of Questions"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/editTextTextPersonName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Select category"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView4"
+            android:layout_marginTop="10dp"
+            android:contentDescription="Category"
+            android:minHeight="48dp" />
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Take a new Quiz !"
-        android:textColor="@color/black"
-        android:textSize="34sp" />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
 </FrameLayout>
