@@ -7,9 +7,9 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string-array name="spinneritems">
-        <item>Science &amp; Nature</item>
+        <item>Science and Nature</item>
         <item>Computers</item>
-        <item>Mathematics</item>
+
         <item>Mythology</item>
         <item>Sports</item>
         <item>Geography</item>
@@ -24,9 +24,9 @@
 
     </string-array>
     <string-array name="diff">
-        <item>Easy</item>
-        <item>Medium</item>
-        <item>Hard</item>
+        <item>easy</item>
+        <item>medium</item>
+        <item>hard</item>
     </string-array>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

@@ -22,9 +22,9 @@ import android.widget.Toast;
 public class frag1 extends Fragment {
 
 Button button;
-int a;
+EditText editText;
 Spinner spinner2,spinner3;
-String diff,category;
+public static String diff,category,number;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -76,9 +76,17 @@ String diff,category;
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_frag1, container, false);
         Button button = view.findViewById(R.id.button);
+        EditText editText = view.findViewById(R.id.editTextTextPersonName);
+        Spinner spinner2 = view.findViewById(R.id.spinner2);
+        Spinner spinner3 = view.findViewById(R.id.spinner3);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diff = spinner3.getSelectedItem().toString();
+                category = spinner2.getSelectedItem().toString();
+                number = editText.getText().toString();
                 openscreen0();
 
             }
