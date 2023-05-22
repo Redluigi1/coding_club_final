@@ -21,11 +21,7 @@
             app:navigationIcon="@drawable/baseline_menu_24"
             app:title="Trivial Pursuit"
             app:titleTextColor="@color/black"
-
             android:background="#FFC8F9" />
-
-
-
 
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -39,6 +35,7 @@
     android:layout_height="match_parent"
     app:headerLayout="@layout/nav_header"
     app:menu="@menu/my_navigation_items"
+    android:background="@color/Purple1st"
     android:layout_gravity="start"/>
 
 
