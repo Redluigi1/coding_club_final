@@ -20,6 +20,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class quiz extends AppCompatActivity {
     public static int SDK_INT = android.os.Build.VERSION.SDK_INT;
@@ -30,53 +31,13 @@ public class quiz extends AppCompatActivity {
     int cat;
     int num;
     String diff,link;
+    static int correct_howmany;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_quiz);
-
-
-
-        if (frag1.category_num == 0){cat = 17;}
-        else if (frag1.category_num == 1){cat = 18;}
-        else if (frag1.category_num == 2){cat = 20;}
-        else if (frag1.category_num == 3){cat = 21;}
-        else if (frag1.category_num == 4){cat = 22;}
-        else if (frag1.category_num == 5){cat = 23;}
-        else if (frag1.category_num == 6){cat = 24;}
-        else if (frag1.category_num == 7){cat = 25;}
-        else if (frag1.category_num == 8){cat = 26;}
-        else if (frag1.category_num == 9){cat = 27;}
-        else if (frag1.category_num == 10){cat = 28;}
-
-        else{cat = 28;}
-
-        num = Integer.parseInt(frag1.number);
-        diff = frag1.diff;
-
-        link = "https://opentdb.com/api.php?amount=" + frag1.number + "&type=multiple&difficulty=" + diff + "&category=" + String.valueOf(cat);
-
-
-
-
-        String string;
-        final Document document;
-        if (SDK_INT >= 10) {
-            StrictMode.ThreadPolicy tp = StrictMode.ThreadPolicy.LAX;
-            StrictMode.setThreadPolicy(tp);
-        }
-        try {
-            document = Jsoup.connect(link).ignoreContentType(true).get();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        string = document.body().text();
-
-        String[] e = string.split("[:]");
-        System.out.println(string);
-
         List<String> question = new ArrayList<String>();
         List<String> correct = new ArrayList<String>();
         List<String> incorrect = new ArrayList<String>();
@@ -84,26 +45,78 @@ public class quiz extends AppCompatActivity {
 
 
 
-        for(int x = 6; x < e.length;x+=6){
-            question.add(e[x].substring(1,e[x].length() - 18));
-            correct.add(e[x+1].substring(1,e[x+1].length() - 21));
+        Thread t1 = new Thread(new Runnable() {
+            public void run() {
+                if (frag1.category_num == 0){cat = 17;}
+                else if (frag1.category_num == 1){cat = 18;}
+                else if (frag1.category_num == 2){cat = 20;}
+                else if (frag1.category_num == 3){cat = 21;}
+                else if (frag1.category_num == 4){cat = 22;}
+                else if (frag1.category_num == 5){cat = 23;}
+                else if (frag1.category_num == 6){cat = 24;}
+                else if (frag1.category_num == 7){cat = 25;}
+                else if (frag1.category_num == 8){cat = 26;}
+                else if (frag1.category_num == 9){cat = 27;}
+                else if (frag1.category_num == 10){cat = 28;}
 
-            if(x+ 6 < e.length){
-                incorrect.add(e[x+2].substring(1,e[x+2].length()-14));}
-            else {incorrect.add(e[x+2].substring(1,e[x+2].length() - 4));}
+                else{cat = 28;}
 
-        }
+                num = Integer.parseInt(frag1.number);
+                if (num > 10){frag1.number = "10";}
+                diff = frag1.diff;
+
+                link = "https://opentdb.com/api.php?amount=" + frag1.number + "&type=multiple&difficulty=" + diff + "&category=" + String.valueOf(cat);
 
 
-        for(String x :incorrect){
-            for(String y: x.split("[,]")){
 
-                incorrect_all.add(y.substring(1,y.length()-1));
+
+                String string;
+                final Document document;
+
+                try {
+                    document = Jsoup.connect(link).ignoreContentType(true).get();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                string = document.body().text();
+
+                String[] e = string.split("[:]");
+
+
+
+
+
+                for(int x = 6; x < e.length;x+=6){
+                    question.add(e[x].substring(1,e[x].length() - 18));
+                    correct.add(e[x+1].substring(1,e[x+1].length() - 21));
+
+                    if(x+ 6 < e.length){
+                        incorrect.add(e[x+2].substring(1,e[x+2].length()-14));}
+                    else {incorrect.add(e[x+2].substring(1,e[x+2].length() - 4));}
+
+                }
+
+
+                for(String x :incorrect){
+                    for(String y: x.split("[,]")){
+
+                        incorrect_all.add(y.substring(1,y.length()-1));
+
+                    }
+
+
+                }
 
             }
+        });
 
-
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+
 
         ll = findViewById(R.id.ll);
 
@@ -115,16 +128,90 @@ public class quiz extends AppCompatActivity {
             myText.setText(question.get(i));
             myText.setTextSize(30);
             RadioGroup radioGroup = new RadioGroup(this);
-            for (int j = 0; j < 3; ++j){
 
-                RadioButton radioButton = new RadioButton(this);
-                radioButton.setText(incorrect_all.get(3*i + j));
-                radioGroup.addView(radioButton);
+
+            Random random = new Random();
+            int randomnum = random.nextInt(3-0) + 0;
+
+            if (randomnum % 4 == 0) {
+
+
+                for (int j = 0; j < 3; ++j) {
+
+                    RadioButton radioButton = new RadioButton(this);
+                    radioButton.setText(incorrect_all.get(3 * i + j));
+                    radioGroup.addView(radioButton);
+
+                }
+                RadioButton radioButton1 = new RadioButton(this);
+                radioButton1.setText(correct.get(i));
+                radioGroup.addView(radioButton1);
+            }
+
+
+            else if ( randomnum % 4 == 1){
+                RadioButton radioButton1 = new RadioButton(this);
+                radioButton1.setText(correct.get(i));
+                radioGroup.addView(radioButton1);
+
+                for (int j = 0; j < 3; ++j) {
+
+                    RadioButton radioButton = new RadioButton(this);
+                    radioButton.setText(incorrect_all.get(3 * i + j));
+                    radioGroup.addView(radioButton);
+
+                }
+
+
+
+
 
             }
-            RadioButton radioButton1 = new RadioButton(this);
-            radioButton1.setText(correct.get(i));
-            radioGroup.addView(radioButton1);
+
+
+            else if ( randomnum % 4 == 2){
+                for (int j = 0; j < 3; ++j) {
+
+                    if (j == 1){RadioButton radioButton1 = new RadioButton(this);
+                        radioButton1.setText(correct.get(i));
+                        radioGroup.addView(radioButton1);}
+
+                    RadioButton radioButton = new RadioButton(this);
+                    radioButton.setText(incorrect_all.get(3 * i + j));
+                    radioGroup.addView(radioButton);
+
+
+
+                }
+
+
+
+
+            }
+
+            else {
+                for (int j = 0; j < 3; ++j) {
+
+                    if (j == 2){RadioButton radioButton1 = new RadioButton(this);
+                        radioButton1.setText(correct.get(i));
+                        radioGroup.addView(radioButton1);}
+
+                    RadioButton radioButton = new RadioButton(this);
+                    radioButton.setText(incorrect_all.get(3 * i + j));
+                    radioGroup.addView(radioButton);
+
+
+
+                }
+
+
+
+
+            }
+
+
+
+
 
 
 
@@ -146,17 +233,43 @@ public class quiz extends AppCompatActivity {
                 txt.setText(link);
         ll.addView(txt);
         Button button = new Button(this);
-        ll.addView(button);
         button.setText("Submit");
+        ll.addView(button);
 
+
+        List<String> selected = new ArrayList<String>();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RadioGroup rdg = new RadioGroup(getApplicationContext());
-                rdg = findViewById(900000000 + 0);
-                RadioButton rb = new RadioButton(getApplicationContext());
-                rb = findViewById(rdg.getCheckedRadioButtonId());
-                txt.setText(rb.getText().toString());
+                Integer a = 0;
+
+
+
+
+
+
+                for (int i = 0; i < Integer.parseInt(frag1.number) ; i++){
+                    RadioButton rb = new RadioButton(getApplicationContext());
+                    RadioGroup rdg = new RadioGroup(getApplicationContext());
+                    rdg = findViewById(900000000 + i);
+                    rb = findViewById(rdg.getCheckedRadioButtonId());
+                    selected.add(rb.getText().toString());
+
+
+
+                }
+
+
+                for (int i = 0; i < Integer.parseInt(frag1.number) ; i++){
+
+                    if(selected.get(i) == correct.get(i)){a = a + 1;}
+
+
+
+
+                }
+                txt.setText(a.toString());
+                correct_howmany = a;
 
             }
         });
