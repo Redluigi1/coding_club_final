@@ -25,6 +25,7 @@ Button button;
 EditText editText;
 Spinner spinner2,spinner3;
 public static String diff,category,number;
+public static Integer category_num;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -86,6 +87,8 @@ public static String diff,category,number;
             public void onClick(View view) {
                 diff = spinner3.getSelectedItem().toString();
                 category = spinner2.getSelectedItem().toString();
+                category_num = spinner2.getSelectedItemPosition();
+
                 number = editText.getText().toString();
                 openscreen0();
 

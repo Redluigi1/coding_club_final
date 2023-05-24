@@ -1,11 +1,17 @@
 package com.example.coding_club_final;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -33,18 +39,19 @@ public class quiz extends AppCompatActivity {
 
 
 
-        if (frag1.category == "Science and Nature"){cat = 17;}
-        else if (frag1.category == "Computers"){cat = 18;}
+        if (frag1.category_num == 0){cat = 17;}
+        else if (frag1.category_num == 1){cat = 18;}
+        else if (frag1.category_num == 2){cat = 20;}
+        else if (frag1.category_num == 3){cat = 21;}
+        else if (frag1.category_num == 4){cat = 22;}
+        else if (frag1.category_num == 5){cat = 23;}
+        else if (frag1.category_num == 6){cat = 24;}
+        else if (frag1.category_num == 7){cat = 25;}
+        else if (frag1.category_num == 8){cat = 26;}
+        else if (frag1.category_num == 9){cat = 27;}
+        else if (frag1.category_num == 10){cat = 28;}
 
-        else if (frag1.category == "Mythology"){cat = 20;}
-        else if (frag1.category == "Sports"){cat = 21;}
-        else if (frag1.category == "Geography"){cat = 22;}
-        else if (frag1.category == "History"){cat = 23;}
-        else if (frag1.category == "Politics"){cat = 24;}
-        else if (frag1.category == "Art"){cat = 25;}
-        else if (frag1.category == "Celebrities"){cat = 26;}
-        else if (frag1.category =="Vehicles"){cat = 28;}
-        else{cat = 27;}
+        else{cat = 28;}
 
         num = Integer.parseInt(frag1.number);
         diff = frag1.diff;
@@ -102,12 +109,57 @@ public class quiz extends AppCompatActivity {
 
         for (int i = 0; i < Integer.parseInt(frag1.number) ; i++)
         {
+            CardView cardView = new CardView(this);
+            CardView cardView2 = new CardView(this);
             TextView myText = new TextView(this);
             myText.setText(question.get(i));
-            myText.setTextSize(40);
-            ll.addView(myText);
+            myText.setTextSize(30);
+            RadioGroup radioGroup = new RadioGroup(this);
+            for (int j = 0; j < 3; ++j){
+
+                RadioButton radioButton = new RadioButton(this);
+                radioButton.setText(incorrect_all.get(3*i + j));
+                radioGroup.addView(radioButton);
+
+            }
+            RadioButton radioButton1 = new RadioButton(this);
+            radioButton1.setText(correct.get(i));
+            radioGroup.addView(radioButton1);
+
+
+
+
+            cardView.addView(myText);
+            radioGroup.setId(900000000 + i);
+            cardView2.addView(radioGroup);
+            cardView.setRadius(5);
+            cardView2.setRadius(5);
+            cardView.setCardBackgroundColor(1);
+            cardView2.setCardBackgroundColor(1);
+
+
+            ll.addView(cardView);
+            ll.addView(cardView2);
 
         }
+        TextView txt = new TextView(this);
+                txt.setText(link);
+        ll.addView(txt);
+        Button button = new Button(this);
+        ll.addView(button);
+        button.setText("Submit");
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RadioGroup rdg = new RadioGroup(getApplicationContext());
+                rdg = findViewById(900000000 + 0);
+                RadioButton rb = new RadioButton(getApplicationContext());
+                rb = findViewById(rdg.getCheckedRadioButtonId());
+                txt.setText(rb.getText().toString());
+
+            }
+        });
 
 
     }

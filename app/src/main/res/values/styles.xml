@@ -12,7 +12,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name = "background">@color/purple_200</item>
+        <item name ="background">@color/purple_200</item>
+        <item name = "android:layout_marginLeft">15dp</item>
 
 
 
