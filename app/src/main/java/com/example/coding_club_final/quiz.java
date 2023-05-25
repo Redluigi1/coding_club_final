@@ -1,14 +1,11 @@
 package com.example.coding_club_final;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,7 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -146,7 +144,9 @@ public class quiz extends AppCompatActivity {
             TextView myText = new TextView(this);
             myText.setText(question.get(i));
             myText.setTextSize(30);
+
             RadioGroup radioGroup = new RadioGroup(this);
+
 
 
             Random random = new Random();
@@ -159,7 +159,9 @@ public class quiz extends AppCompatActivity {
 
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(incorrect_all.get(3 * i + j));
+
                     radioGroup.addView(radioButton);
+                    if(j == 0){radioButton.setChecked(true);}
 
                 }
                 RadioButton radioButton1 = new RadioButton(this);
@@ -175,6 +177,7 @@ public class quiz extends AppCompatActivity {
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(incorrect_all.get(3 * i + j));
                     radioGroup.addView(radioButton);
+                    if(j == 0){radioButton.setChecked(true);}
 
                 }
 
@@ -191,6 +194,7 @@ public class quiz extends AppCompatActivity {
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(incorrect_all.get(3 * i + j));
                     radioGroup.addView(radioButton);
+                    if(j == 0){radioButton.setChecked(true);}
 
 
                 }
@@ -207,9 +211,12 @@ public class quiz extends AppCompatActivity {
 
                     RadioButton radioButton = new RadioButton(this);
                     radioButton.setText(incorrect_all.get(3 * i + j));
+
+
                     radioGroup.addView(radioButton);
 
 
+                    if(j == 0){radioButton.setChecked(true);}
                 }
 
 
