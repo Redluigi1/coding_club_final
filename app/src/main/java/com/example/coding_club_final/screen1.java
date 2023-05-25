@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
@@ -53,11 +54,14 @@ public class screen1 extends AppCompatActivity {
 
                     case R.id.nav_past:
                         replaceFragment(new frag2());
+
                         break;
 
 
                     case R.id.nav_info:
                         replaceFragment(new frag3());
+
+
                         break;
 
                     default:

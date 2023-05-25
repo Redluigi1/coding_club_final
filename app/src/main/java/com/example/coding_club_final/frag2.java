@@ -1,5 +1,9 @@
 package com.example.coding_club_final;
 
+import static android.content.Context.MODE_WORLD_READABLE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +20,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class frag2 extends Fragment {
+    TextView txt;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,13 +59,34 @@ public class frag2 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_frag2, container, false);
+        TextView txt = view.findViewById(R.id.textView8);
+       SharedPreferences shf = this.getActivity().getSharedPreferences("NAME_SharedPref",Context.MODE_PRIVATE);
+        txt.setText(shf.getString("past",""));
+
+
+
+
+
+
+
+
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag2, container, false);
+        return view;
+
     }
 }

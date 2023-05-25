@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -21,8 +23,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class quiz extends AppCompatActivity {
@@ -35,6 +40,7 @@ public class quiz extends AppCompatActivity {
     int num;
     String diff, link;
     static Integer correct_howmany;
+    static  String past_quiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,7 @@ public class quiz extends AppCompatActivity {
         List<String> correct = new ArrayList<String>();
         List<String> incorrect = new ArrayList<String>();
         List<String> incorrect_all = new ArrayList<String>();
+
 
 
         Thread t1 = new Thread(new Runnable() {
@@ -258,6 +265,27 @@ public class quiz extends AppCompatActivity {
 
                 correct_howmany = a;
                 openscreen1();
+
+                SharedPreferences shf = getSharedPreferences("NAME_SharedPref",Context.MODE_PRIVATE);
+                String strPref = shf.getString("past", null);
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                Integer inco = Integer.parseInt(frag1.number) - correct_howmany;
+
+                if(strPref != null) {
+                    SharedPreferences.Editor myEdit = shf.edit();
+                    myEdit.putString("past", shf.getString("past","") + "Date - " + date + "\n" + "Correct - " + correct_howmany.toString() + "\n" + "Incorrect - " + inco.toString() + "\n" + "\n");
+                    myEdit.commit();
+
+
+
+                }
+                else{
+                    SharedPreferences.Editor myEdit = shf.edit();
+                    myEdit.putString("past","Date - " + date + "\n" + "Correct - " + correct_howmany.toString() + "\n" + "Incorrect - " + inco.toString() + "\n" + "\n");
+                    myEdit.commit();
+
+
+                }
 
             }
         });
