@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 public class MainActivity extends AppCompatActivity {
+    static  String user_name;
     public static String name_string = "";
 
     public TextView username;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         button1 = findViewById(R.id.button1);
         username = findViewById(R.id.username);
+        user_name = username.getText().toString();
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

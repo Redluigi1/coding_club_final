@@ -77,7 +77,7 @@ public class quiz extends AppCompatActivity {
                 } else if (frag1.category_num == 10) {
                     cat = 28;
                 } else {
-                    cat = 28;
+                    cat = 29;
                 }
 
                 num = Integer.parseInt(frag1.number);
@@ -87,7 +87,10 @@ public class quiz extends AppCompatActivity {
                 diff = frag1.diff;
 
                 link = "https://opentdb.com/api.php?amount=" + frag1.number + "&type=multiple&difficulty=" + diff + "&category=" + String.valueOf(cat);
-
+                if (cat == 18){link = "https://opentdb.com/api.php?category=18&type=&amount=10";}
+                if (cat ==25){link = "https://opentdb.com/api.php?category=25&type=&amount=10";}
+                if (cat ==26){link = "https://opentdb.com/api.php?category=26&type=&amount=10";}
+                if (cat ==29){link = "https://opentdb.com/api.php?category=29&type=&amount=10";}
 
                 String string;
                 final Document document;
